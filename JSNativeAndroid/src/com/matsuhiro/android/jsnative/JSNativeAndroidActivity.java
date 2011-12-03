@@ -30,7 +30,7 @@ public class JSNativeAndroidActivity extends Activity {
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 String str = mJSResult.getText().toString();
-                str = str + consoleMessage.message()+"\n";
+                str = consoleMessage.message() + str +"\n";
                 mJSResult.setText(str);
                 return true;
             }
@@ -56,7 +56,7 @@ public class JSNativeAndroidActivity extends Activity {
             mActivity.runOnUiThread(new Runnable() {
                 public void run() {
                     String str = mNativeResult.getText().toString();
-                    str = str + arg + "\n";
+                    str = arg + str + "\n";
                     mNativeResult.setText(str);
                 }
                 
