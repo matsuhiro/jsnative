@@ -66,7 +66,7 @@ public class JSNativeAndroidActivity extends Activity {
                 
             });
             
-            return "This is native function. web view id is "+mJavaCalledCount;
+            return "This is native function. count "+mJavaCalledCount;
         }
     }
 }
