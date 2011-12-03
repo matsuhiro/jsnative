@@ -16,6 +16,8 @@ public class JSNativeAndroidActivity extends Activity {
     private TextView mJSResult;
     private TextView mNativeResult;
     private Activity mActivity;
+    private int mJSCalledCount = 0;
+    private int mJavaCalledCount = 0;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,8 @@ public class JSNativeAndroidActivity extends Activity {
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 String str = mJSResult.getText().toString();
-                str = consoleMessage.message() + str +"\n";
+                mJSCalledCount += 1;
+                str = consoleMessage.message() + mJSCalledCount +"\n" + str +"\n";
                 mJSResult.setText(str);
                 return true;
             }
@@ -43,7 +46,7 @@ public class JSNativeAndroidActivity extends Activity {
         calljs.setOnClickListener(new Button.OnClickListener() {
 
             public void onClick(View v) {
-                mWeb.loadUrl("javascript:ANDROID.CallJSfromNative("+v.getId()+")");
+                mWeb.loadUrl("javascript:ANDROID.CallJSfromNative("+mJSCalledCount+")");
                 
             }
             
@@ -56,13 +59,14 @@ public class JSNativeAndroidActivity extends Activity {
             mActivity.runOnUiThread(new Runnable() {
                 public void run() {
                     String str = mNativeResult.getText().toString();
-                    str = arg + str + "\n";
+                    mJavaCalledCount += 1;
+                    str = arg  + mJavaCalledCount + "\n"+ str + "\n";
                     mNativeResult.setText(str);
                 }
                 
             });
             
-            return "This is native function. web view id is "+mWeb.getId();
+            return "This is native function. web view id is "+mJavaCalledCount;
         }
     }
 }
