@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JSNativeAndroid</string>
+    <string name="native_result">Native result</string>
+    <string name="call_js">Call JavaScript</string>
+    <string name="js_result">Javascript result</string>
+
+</resources>
